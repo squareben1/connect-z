@@ -11,3 +11,6 @@ def test_arrayify_ones():
 
 def test_arrayify_twos():
     assert arrayify(['2 2']) == [['-', '-'], ['-', '-']]
+
+def test_arrayify_threes():
+    assert arrayify(['3 3']) == [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]

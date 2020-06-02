@@ -19,10 +19,7 @@ def arrayify(array):
     x = int(strings[0]) #width
     y = int(strings[1]) #height
 
-    if y == 1:
-        return [['-']]
-    else:
-        return [['-', '-'], ['-', '-']]
+    return [['-' for i in range(x)] for i in range(y)]
 
 
 
