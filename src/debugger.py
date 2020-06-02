@@ -6,10 +6,7 @@ import sys
 # print(contents)
 
 def strip(array): #list comprehension?
-    stripped_arr = []
-    for s in array:
-        stripped_arr.append(s.rstrip("\n"))
-    return stripped_arr
+    return [s.rstrip("\n") for s in array]
 
 def intify(array): #list comprehension?
     int_arr = []
