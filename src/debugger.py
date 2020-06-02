@@ -14,6 +14,8 @@ def strip(array):
     return stripped_arr
 
 
-# def debugger(array):
+def arrayify(array):
+    return [['-']]
+
 
 
