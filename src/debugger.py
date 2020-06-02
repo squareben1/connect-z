@@ -3,9 +3,10 @@ import sys
 # f = open(sys.argv[1],"r")
 # contents = f.readlines() #strip newline
 # f.close()
-# print(contents) 
+# print(contents)
 
 arr = ['3 3 2\n', '1\n', '2\n', '1\n']
+
 
 def strip(array):
     stripped_arr = []
@@ -14,12 +15,14 @@ def strip(array):
     return stripped_arr
 
 
-def arrayify(array):
-    strings = array[0].split(' ')
-    x = int(strings[0]) #width
-    y = int(strings[1]) #height
+def arrayify(string):
+    nums = string.split(' ')
+    x = int(nums[0])  # width
+    y = int(nums[1])  # height
 
     return [['-' for i in range(x)] for i in range(y)]
 
-
-
+def add_moves(arr, arr2):
+    return [['X']]
+    # iterate over arr of arrs
+    # add
