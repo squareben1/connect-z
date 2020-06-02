@@ -9,10 +9,8 @@ def strip(array): #list comprehension?
     return [s.rstrip("\n") for s in array]
 
 def intify(array): #list comprehension?
-    int_arr = []
-    for i in array:
-        int_arr.append(int(i))
-    return int_arr
+    return [int(i) for i in array]
+
 
 def arrayify(string):
     nums = string.split(' ')
