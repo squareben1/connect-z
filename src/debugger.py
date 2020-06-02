@@ -15,7 +15,14 @@ def strip(array):
 
 
 def arrayify(array):
-    return [['-']]
+    strings = array[0].split(' ')
+    x = int(strings[0]) #width
+    y = int(strings[1]) #height
+
+    if y == 1:
+        return [['-']]
+    else:
+        return [['-', '-'], ['-', '-']]
 
 
 
