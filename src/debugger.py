@@ -14,6 +14,11 @@ def strip(array):
         stripped_arr.append(s.rstrip("\n"))
     return stripped_arr
 
+def intify(array):
+    int_arr = []
+    for i in array:
+        int_arr.append(int(i))
+    return int_arr
 
 def arrayify(string):
     nums = string.split(' ')
