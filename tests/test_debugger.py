@@ -8,9 +8,6 @@ array_threes = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
 def test_stripper_new_lines():
     assert strip(arr) == stripped_array
 
-def test_intify():
-    assert intify(stripped_array[1:]) == [1, 2, 1]
-
 def test_arrayify_ones():
     assert arrayify('1 1') == [['-']]
 
@@ -20,9 +17,14 @@ def test_arrayify_twos():
 def test_arrayify_threes():
     assert arrayify('3 3') == [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
 
-def test_add_moves_one():
-    assert add_moves([['-']], ['1']) == [['X']]
+def test_intify():
+    assert intify(stripped_array[1:]) == [1, 2, 1]
 
-# def test_add_moves_two():
-#     print('stripped_array[1:]', stripped_array[1:])
-#     assert add_moves(array_twos, ['1', '2']) == [['X', 'O'], ['-', '-']]
+def test_add_moves_one():
+    assert add_moves([['-']], [1]) == [['X']]
+
+def test_add_moves_two():
+    print('stripped_array[1:]', stripped_array[1:])
+    print(array_twos)
+    assert add_moves(array_twos, [1, 2]) == [['X', 'O'], ['-', '-']]
+    

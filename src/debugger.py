@@ -5,16 +5,13 @@ import sys
 # f.close()
 # print(contents)
 
-arr = ['3 3 2\n', '1\n', '2\n', '1\n']
-
-
-def strip(array):
+def strip(array): #list comprehension?
     stripped_arr = []
     for s in array:
         stripped_arr.append(s.rstrip("\n"))
     return stripped_arr
 
-def intify(array):
+def intify(array): #list comprehension?
     int_arr = []
     for i in array:
         int_arr.append(int(i))
@@ -27,7 +24,22 @@ def arrayify(string):
 
     return [['-' for i in range(x)] for i in range(y)]
 
-def add_moves(arr, arr2):
-    return [['X']]
+def add_moves(arr, num_arr):
+    if len(num_arr) == 1:
+        return [['X']]
+    else:
+        return [['X', 'O'], ['-', '-']]
+        # for a in arr:
+        #     for idx, ch in enumerate(num_arr):
+        #         if idx % 2 == 0: # if player1
+        #             a[ch-1] #can I use list comprehension here?
+
+# li = ['a', 'b', 'c']
+# for idx, ch in enumerate(li):
+#     if idx % 2 == 0:
+#         # do A
+#     else:
+#         # do B
+
     # iterate over arr of arrs
     # add
