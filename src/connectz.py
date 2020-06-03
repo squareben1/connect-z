@@ -55,6 +55,7 @@ class Connectz:
         game_codes.append(self.check_column(move_position))
         game_codes.append(self.check_row(move_position, 'right'))
         game_codes.append(self.check_row(move_position, 'left'))
+        game_codes.append(self.check_diagonal(move_position, 'up', 'left'))
 
     def check_column(self, move_position):
         if len(self.board[move_position[0]]) < self.z: return -1 # guard: if win is possible

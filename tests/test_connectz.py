@@ -61,4 +61,30 @@ class Test_Connectz:
         losing_move = [1, 2]
         assert subject.check_diagonal(winning_move, 'down', 'right') == 1
         assert subject.check_diagonal(losing_move, 'down', 'right') == -1
+
+    def test_diagonal_down_left(self):
+        subject.z = 3
+        subject.board = [[1], [2, 1, 2], [1, 2, 1]]
+        winning_move = [2, 2]
+        losing_move = [1, 0]
+        assert subject.check_diagonal(winning_move, 'down', 'left') == 1
+        assert subject.check_diagonal(losing_move, 'down', 'left') == -1
+    
+    def test_diagonal_up_right(self):
+        subject.z = 3
+        subject.board = [[1, 1], [2, 1], [2, 2, 1]]
+        winning_move = [0, 0]
+        losing_move = [2, 0]
+        assert subject.check_diagonal(winning_move, 'up', 'right') == 1
+        assert subject.check_diagonal(losing_move, 'up', 'right') == -1
+
+    def test_diagonal_up_left(self):
+        subject.z = 3
+        subject.board = [[1, 2, 1], [2, 1, 2], [1]]
+        winning_move = [2, 0]
+        losing_move = [0, 0]
+        assert subject.check_diagonal(winning_move, 'up', 'left') == 1
+        assert subject.check_diagonal(losing_move, 'up', 'left') == -1
+
+
     
