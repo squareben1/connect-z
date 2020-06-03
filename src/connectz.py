@@ -61,11 +61,19 @@ class Connectz:
 
     def play_game(self):
         player = 1
+        max_moves = self.x * self.y
+        len(self.moves)
+
         for i in self.moves:
             move_position = self.add_move(player, i)
             result = self.check_move(move_position)
+            
+            print(max_moves)
             if result:
                 return result
+            elif max_moves == len(self.moves):
+                return 0
+
             player = 2 if player == 1 else 1  # switch players after each move
 
     def add_move(self, player, move):
@@ -91,8 +99,8 @@ class Connectz:
     def check_column(self, move_position):
         if len(self.board[move_position[0]]) < self.z:
             return -1  # guard: if win is impossible bc column is < Z
-        column = self.board[move_position[0]][-self.z:] #get Z elems in col
-        result = all(elem == column[0] for elem in column) #check all same
+        column = self.board[move_position[0]][-self.z:]  # get Z elems in col
+        result = all(elem == column[0] for elem in column)  # check all same
         return column[0] if result else -1
 
     def check_row(self, move_position, direction):
@@ -116,10 +124,10 @@ class Connectz:
                 return -1  # guard: if no value in row
             z_moves.append(a[row_height])
 
-        # result true if all element in z_moves are the same
         return self.check_elems(z_moves)
 
     def check_elems(self, moves):
+      # result true if all element in z_moves are the same
         result = all(elem == moves[0] for elem in moves)
         return moves[0] if result else -1
 
