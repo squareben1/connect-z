@@ -23,8 +23,6 @@ def test_intify():
 def test_add_moves_one():
     assert add_moves([['-']], [1]) == [['X']]
 
-def test_add_moves_two():
-    print('stripped_array[1:]', stripped_array[1:])
-    print(array_twos)
-    assert add_moves(array_twos, [1, 2]) == [['X', 'O'], ['-', '-']]
+# def test_add_moves_two():
+#     assert add_moves(array_twos, [1, 2]) == [['X', 'O'], ['-', '-']]
     
