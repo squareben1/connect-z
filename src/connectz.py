@@ -1,10 +1,11 @@
 import sys
+import re
 
 
 class Connectz:
     def run(self, file_path):
         result = self.read_file(file_path)
-        if result == 9:
+        if result == 9 or result == 8:
             return result
 
         string_array = self.strip(result)  # strip new lines
@@ -22,14 +23,21 @@ class Connectz:
             f = open(file_path, "r")
         except FileNotFoundError:
             return 9
+
         f = open(file_path, "r")
         contents = f.readlines()  # strip newline
         f.close()
 
+        file_string = ''.join(contents)
+        pattern = re.compile(r'\d \d \d\n(?:\d\n)+\d\Z')
+        match = pattern.match(file_string)
+        if match == None:
+            return 8
+
         return contents
 
     """
-    In this solution columns are represented by arrays, rows by positions in them.
+    In this solution columns  are represented by arrays, rows by positions in them.
     Below game params = X = 3, Y = 3, Z = 2, moves = [1, 2, 1]
     [
       [1,1,_], ─ Column 1
@@ -41,10 +49,6 @@ class Connectz:
        └ ─	Row 1
     Player 1 wins
     """
-
-  # each array in board represents a column (Y height), board is array of columns i.e. X width
-  # needs a check that move doesnt take len(column) over Y or len(board i.e. arr of arrs) over X
-  # throw appropriate error in either case
 
     def strip(self, arr):  # strip new lines
         return [s.rstrip("\n") for s in arr]
@@ -86,9 +90,9 @@ class Connectz:
 
     def check_column(self, move_position):
         if len(self.board[move_position[0]]) < self.z:
-            return -1  # guard: if win is possible
-        column = self.board[move_position[0]][-self.z:]
-        result = all(elem == column[0] for elem in column)
+            return -1  # guard: if win is impossible bc column is < Z
+        column = self.board[move_position[0]][-self.z:] #get Z elems in col
+        result = all(elem == column[0] for elem in column) #check all same
         return column[0] if result else -1
 
     def check_row(self, move_position, direction):
@@ -113,8 +117,11 @@ class Connectz:
             z_moves.append(a[row_height])
 
         # result true if all element in z_moves are the same
-        result = all(elem == z_moves[0] for elem in z_moves)
-        return z_moves[0] if result else -1
+        return self.check_elems(z_moves)
+
+    def check_elems(self, moves):
+        result = all(elem == moves[0] for elem in moves)
+        return moves[0] if result else -1
 
     def check_diagonal(self, move_position, vertical, horizontal):
         z_moves = []
@@ -141,8 +148,7 @@ class Connectz:
             z_moves.append(next_value)
 
         # result true if all element in z_moves are the same
-        result = all(elem == z_moves[0] for elem in z_moves)
-        return z_moves[0] if result else -1
+        return self.check_elems(z_moves)
 
 # f = open(sys.argv[1], "r")
 # contents = f.readlines()  # strip newline
@@ -152,6 +158,7 @@ class Connectz:
 # new_game = Connectz(contents)
 # result_code = new_game.play_game()
 # print(result_code)
+
 
 # subject = Connectz()
 # print(subject.run(sys.argv[1]))
