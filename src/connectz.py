@@ -53,28 +53,34 @@ class Connectz:
         # Game code returned, if null no game code applicable
         game_codes = []
         game_codes.append(self.check_column(move_position))
-        game_codes.append(self.check_row(move_position, direction))
+        game_codes.append(self.check_row(move_position, 'right'))
+        game_codes.append(self.check_row(move_position, 'left'))
 
     def check_column(self, move_position):
-        if len(self.board[move_position[0]]) < self.z: return -1 # guard clause if win is possible
+        if len(self.board[move_position[0]]) < self.z: return -1 # guard: if win is possible
         column = self.board[move_position[0]][-self.z:] 
         result = all(elem == column[0] for elem in column)
         return column[0] if result else -1
 
     def check_row(self, move_position, direction): 
         z_moves = []
-        start_column = move_position[0]
-        end_column = start_column + self.z
-        move_row = move_position[1]
-        if end_column + 1 > self.x: return -1  # guard: if not enough rows
+        row_height = move_position[1]
+        if direction == 'right':
+            start_column = move_position[0] 
+            end_column = start_column + self.z - 1
+            if end_column > self.x: return -1 # guard: if not enough rows to right
+        else:
+            start_column = move_position[0] - self.z + 1
+            end_column = move_position[0]
+            if start_column < 0: return -1 # guard: if not enough rows to left
         
-        columns_to_check = self.board[start_column:end_column]
+        columns_to_check = self.board[start_column:end_column + 1]
         
         for a in columns_to_check:
-            if len(a) < (move_row + 1): return -1   # guard: if no value in row
-            z_moves.append(a[move_row])
+            if len(a) < (row_height + 1): return -1 # guard: if no value in row
+            z_moves.append(a[row_height])
 
-        result = all(elem == z_moves[0] for elem in z_moves)
+        result = all(elem == z_moves[0] for elem in z_moves) # result true if all element in z_moves are the same
         return z_moves[0] if result else -1
 
         

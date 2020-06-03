@@ -39,9 +39,17 @@ class Test_Connectz:
         assert subject.check_column([0, 1]) == 1
         assert subject.check_column([1, 0]) == -1
 
-    def test_check_row(self):
+    def test_check_row_right(self):
+        # moves = [3, 1, 2]
+        subject.board = [[2], [1], [1]]
+        winning_move = [1, 0]
+        losing_move = [0, 0]
+        assert subject.check_row(winning_move, 'right') == 1
+        assert subject.check_row(losing_move, 'right') == -1
+
+    def test_check_row_left(self):
         subject.board = [[1, 2], [1], []]
         winning_move = [1, 0]
-        assert subject.check_row(winning_move, 'right') == -1
-        
         losing_move = [0, 1]
+        assert subject.check_row(winning_move, 'left') == 1
+        assert subject.check_row(losing_move, 'left') == -1
