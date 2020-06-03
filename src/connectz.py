@@ -10,6 +10,20 @@ class Connectz:
       self.moves = self.intify(string_array[1:])
       self.board = [[] for i in range(self.x)]
 
+    """
+    In this solution columns are represented by arrays, rows by positions in them.
+    Below game params = X = 3, Y = 3, Z = 2, moves = [1, 2, 1]
+    [
+      [1,1,_],  Column 1
+      [2,_,_],  Column 2
+      [_,_,_]   Column 3
+    ] |  | |
+      |  | └ ─ Row 3
+      |  └ ─ Row 2
+      └ ─	Row 1
+    Player 1 wins
+    """
+
   # each array in board represents a column (Y height), board is array of columns i.e. X width
   # needs a check that move doesnt take len(column) over Y or len(board i.e. arr of arrs) over X
   # throw appropriate error in either case
@@ -26,15 +40,25 @@ class Connectz:
     def play_game(self):
         player = 1
         for i in self.moves:
-            # print(i)
-            print(player)
+            move_position = self.add_move(player, i)
+            self.check_move(move_position)
             player = 2 if player == 1 else 1 # switch players after each move
-            
-
+        
     def add_move(self, player, move):
-        print(self.board[move-1].append(player))
+        self.board[move-1].append(player) # adds player to column
+        return [move-1, len(self.board[move-1])-1] # [column_number, row_number]
 
-        return [move, len(self.board[move-1])-1] # [column_number, row_number]
+    def check_move(self, move_position):
+        # Check the different varitations of win
+        # Game code returned, if null no game code applicable
+        self.check_column(move_position)
+
+    def check_column(self, move_position):
+        column = self.board[move_position[0]][-self.z:] 
+        result = all(elem == column[0] for elem in column)
+        print(result)
+        return column[0] if result else -1
+
 
 
     def check_game(self):

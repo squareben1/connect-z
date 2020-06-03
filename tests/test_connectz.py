@@ -32,3 +32,6 @@ class Test_Connectz:
 
     def test_add_move(self):
         assert subject.add_move(1, 1) == [0, 0]
+    
+    def test_check_column(self):
+        assert subject.check_column([0, 1]) == 1
