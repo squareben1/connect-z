@@ -8,6 +8,7 @@ class Connectz:
       self.y = arr[1]
       self.z = arr[2]
       self.moves = self.intify(string_array[1:])
+  # want to remove these vars and just chain funcs?
       
     def strip(self, arr):
         return [s.rstrip("\n") for s in arr]
@@ -18,6 +19,19 @@ class Connectz:
     def arrayify(self, string):
         return string.split(' ')
 
+    def split_players(self):
+        p1 = []
+        p2 = []
+        for idx, i in enumerate(self.moves):
+            if idx % 2 == 0:
+                p1.append(i)
+            else: 
+                p2.append(i)
+        return [p1, p2]
+
+    def check_game(self):
+        pass
+# can check for either Z consecutive same or Z consecutive order (1,2,3,4)
     
 
 
