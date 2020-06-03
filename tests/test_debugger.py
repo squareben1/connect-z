@@ -5,7 +5,7 @@ stripped_array = ['3 3 2', '1', '2', '1']
 array_twos = [['-', '-'], ['-', '-']]
 array_threes = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
 
-def test_stripper_new_lines():
+def test_strip_new_lines():
     assert strip(arr) == stripped_array
 
 def test_arrayify_ones():

@@ -8,7 +8,7 @@ array_threes = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
 subject = Connectz(arr) 
 
 class Test_Connectz:
-    def test_stripper_new_lines(self):
+    def test_strip_new_lines(self):
         assert subject.strip(arr) == stripped_array
 
     def test_arrayify_ones(self):
@@ -19,3 +19,9 @@ class Test_Connectz:
 
     def test_intify(self):
         assert subject.intify(stripped_array[1:]) == [1, 2, 1]
+
+    def test_inputs(self):
+        assert subject.x == 3
+        assert subject.y == 3
+        assert subject.z == 2
+        assert subject.moves == [1, 2, 1]
