@@ -2,10 +2,12 @@ import sys
 
 
 class Connectz:
-    def __init__(self, file_path):
-        array = self.read_file(file_path)
+    def run(self, file_path):
+        result = self.read_file(file_path)
+        if result == 9:
+            return result
 
-        string_array = self.strip(array)  # strip new lines
+        string_array = self.strip(result)  # strip new lines
         arr = self.intify(self.arrayify(string_array[0]))  # array of ints
         self.x = arr[0]
         self.y = arr[1]
@@ -13,12 +15,18 @@ class Connectz:
         self.moves = self.intify(string_array[1:])
         self.board = [[] for i in range(self.x)]
 
+        return self.play_game()
+
     def read_file(self, file_path):
-      f = open(file_path, "r")
-      contents = f.readlines()  # strip newline
-      f.close()
-      
-      return contents
+        try:
+            f = open(file_path, "r")
+        except FileNotFoundError:
+            return 9
+        f = open(file_path, "r")
+        contents = f.readlines()  # strip newline
+        f.close()
+
+        return contents
 
     """
     In this solution columns are represented by arrays, rows by positions in them.
@@ -49,11 +57,11 @@ class Connectz:
 
     def play_game(self):
         player = 1
-        print(self.moves)
         for i in self.moves:
             move_position = self.add_move(player, i)
             result = self.check_move(move_position)
-            if result: return result
+            if result:
+                return result
             player = 2 if player == 1 else 1  # switch players after each move
 
     def add_move(self, player, move):
@@ -73,7 +81,8 @@ class Connectz:
         game_codes.append(self.check_diagonal(move_position, 'down', 'left'))
         game_codes.append(self.check_diagonal(move_position, 'down', 'right'))
         result = list(filter(lambda a: a != -1, game_codes))
-        if result: return result[0]
+        if result:
+            return result[0]
 
     def check_column(self, move_position):
         if len(self.board[move_position[0]]) < self.z:
@@ -135,8 +144,6 @@ class Connectz:
         result = all(elem == z_moves[0] for elem in z_moves)
         return z_moves[0] if result else -1
 
-
-
 # f = open(sys.argv[1], "r")
 # contents = f.readlines()  # strip newline
 # f.close()
@@ -145,3 +152,6 @@ class Connectz:
 # new_game = Connectz(contents)
 # result_code = new_game.play_game()
 # print(result_code)
+
+# subject = Connectz()
+# print(subject.run(sys.argv[1]))

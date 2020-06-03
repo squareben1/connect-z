@@ -6,7 +6,8 @@ stripped_array = ['3 3 2', '1', '2', '1']
 
 ones_first_col = ['7 6 4\n', '1\n', '2\n', '1\n', '2\n', '1\n', '2\n', '1\n']
 
-subject = Connectz('tests/easy_test.txt')
+subject = Connectz()
+subject.run('tests/easy_test.txt')
 
 
 
@@ -33,6 +34,7 @@ class Test_Connectz:
     #     assert subject.play_game() == 1
 
     def test_add_move(self):
+        subject.board = [[], [], []]
         assert subject.add_move(1, 1) == [0, 0]
 
     def test_check_column(self):
@@ -90,13 +92,12 @@ class Test_Connectz:
     # def test_player_2_wins:
 
     def test_reads_file_ok(self):
-        subject = Connectz('test.txt')
-        assert subject.play_game() == 2
+        subject = Connectz() 
+        assert subject.run('test.txt') == 2
 
     def test_reads_file_fail(self):
-        subject = Connectz('test.txt')
-        assert subject.play_game() == 9
-
+        subject = Connectz()    
+        assert subject.run('invalid.txt') == 9
 
 
     
