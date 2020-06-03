@@ -6,7 +6,8 @@ stripped_array = ['3 3 2', '1', '2', '1']
 
 ones_first_col = ['7 6 4\n', '1\n', '2\n', '1\n', '2\n', '1\n', '2\n', '1\n']
 
-subject = Connectz(easy_arr) 
+subject = Connectz(easy_arr)
+
 
 class Test_Connectz:
     def test_strip_new_lines(self):
@@ -32,6 +33,15 @@ class Test_Connectz:
 
     def test_add_move(self):
         assert subject.add_move(1, 1) == [0, 0]
-    
+
     def test_check_column(self):
+        subject.board = [[1, 1], [2], []]
         assert subject.check_column([0, 1]) == 1
+        assert subject.check_column([1, 0]) == -1
+
+    def test_check_row(self):
+        subject.board = [[1, 2], [1], []]
+        winning_move = [1, 0]
+        assert subject.check_row(winning_move, 'right') == -1
+        
+        losing_move = [0, 1]
