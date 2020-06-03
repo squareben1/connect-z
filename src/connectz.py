@@ -83,8 +83,32 @@ class Connectz:
         result = all(elem == z_moves[0] for elem in z_moves) # result true if all element in z_moves are the same
         return z_moves[0] if result else -1
 
+    def check_diagonal(self, move_position, vertical, horizontal):
+        z_moves = []
         
+        starting_column = move_position[0]
+        row_height = move_position[1]
+
+        vertical_iterator = 1 if vertical == 'up' else -1
+        horiztonal_iterator = 1 if horizontal == 'right' else -1
+
+        # get columns and check horizontal range
+        if horizontal == 'right':
+            if (move_position[0] + self.z - 1) > self.x: return -1 # guard: if not enough rows to right
+        else:
+            if (move_position[0] - self.z + 1) < 0: return -1 # guard: if not enough rows to left
+
+        for i in range(self.z):
+            column_loc = starting_column + (i * horiztonal_iterator)
+            row_loc = row_height + (i * vertical_iterator)
+            if len(self.board[column_loc]) < (row_loc + 1): return -1 # guard: if no value in row exit
+            next_value = self.board[column_loc][row_loc]
+            z_moves.append(next_value)
         
+        result = all(elem == z_moves[0] for elem in z_moves) # result true if all element in z_moves are the same
+        return z_moves[0] if result else -1
+
+
         
 
 # new_game = Connectz()

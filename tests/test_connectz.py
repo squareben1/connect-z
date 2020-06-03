@@ -53,3 +53,12 @@ class Test_Connectz:
         losing_move = [0, 1]
         assert subject.check_row(winning_move, 'left') == 1
         assert subject.check_row(losing_move, 'left') == -1
+
+    def test_diagonal_down_right(self):
+        subject.z = 3
+        subject.board = [[1, 2, 1], [2, 1, 2], [1]]
+        winning_move = [0, 2]
+        losing_move = [1, 2]
+        assert subject.check_diagonal(winning_move, 'down', 'right') == 1
+        assert subject.check_diagonal(losing_move, 'down', 'right') == -1
+    
