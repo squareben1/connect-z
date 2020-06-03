@@ -1,12 +1,13 @@
 from src.connectz import *
-# import os
+import os
 
 easy_arr = ['3 3 2\n', '1\n', '2\n', '1\n']
 stripped_array = ['3 3 2', '1', '2', '1']
 
 ones_first_col = ['7 6 4\n', '1\n', '2\n', '1\n', '2\n', '1\n', '2\n', '1\n']
 
-subject = Connectz(easy_arr)
+subject = Connectz('tests/easy_test.txt')
+
 
 
 class Test_Connectz:
@@ -85,6 +86,17 @@ class Test_Connectz:
         losing_move = [0, 0]
         assert subject.check_diagonal(winning_move, 'up', 'left') == 1
         assert subject.check_diagonal(losing_move, 'up', 'left') == -1
+
+    # def test_player_2_wins:
+
+    def test_reads_file_ok(self):
+        subject = Connectz('test.txt')
+        assert subject.play_game() == 2
+
+    def test_reads_file_fail(self):
+        subject = Connectz('test.txt')
+        assert subject.play_game() == 9
+
 
 
     
