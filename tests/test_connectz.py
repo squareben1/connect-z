@@ -27,8 +27,8 @@ class Test_Connectz:
         assert subject.z == 2
         assert subject.moves == [1, 2, 1]
 
-    def test_split_players(self):
-        assert subject.split_players() == [[1, 1], [2]]
-
     # def test_easy_logic(self):
-    #     assert subject.check_game() == 1
+    #     assert subject.play_game() == 1
+
+    def test_add_move(self):
+        assert subject.add_move(1, 1) == [0, 0]
