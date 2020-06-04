@@ -15,6 +15,7 @@ class Connectz:
         self.z = arr[2]
         self.moves = self.intify(string_array[1:])
         self.board = [[] for i in range(self.x)]
+        self.won = False
 
         return self.play_game()
 
@@ -62,19 +63,23 @@ class Connectz:
     def play_game(self):
         player = 1
         max_moves = self.x * self.y
-        len(self.moves)
+
+        
 
         for i in self.moves:
             move_position = self.add_move(player, i)
             result = self.check_move(move_position)
-            
-            print(max_moves)
             if result:
+                self.won = True
                 return result
-            elif max_moves == len(self.moves):
+            elif max_moves == len(self.moves): # if draw
                 return 0
-
+                # below: trying to do incomplete error:
             player = 2 if player == 1 else 1  # switch players after each move
+        # if incomplete: 
+        if (len(self.moves) < max_moves) and self.won == False:
+                print(result)
+                return 3
 
     def add_move(self, player, move):
         self.board[move-1].append(player)  # adds player to column
@@ -94,6 +99,8 @@ class Connectz:
         game_codes.append(self.check_diagonal(move_position, 'down', 'right'))
         result = list(filter(lambda a: a != -1, game_codes))
         if result:
+            self.won = True
+            print(result[0], self.won)
             return result[0]
 
     def check_column(self, move_position):

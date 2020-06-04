@@ -62,7 +62,7 @@ class Test_Connectz:
         assert subject.check_diagonal(losing_move, 'down', 'right') == -1
 
     def test_diagonal_down_left(self):
-        subject.z = 3
+        subject.z = 3 # LOOK AT THIS AGAIN WHEN SORTED KEEP PLAYING ERR
         subject.board = [[1], [2, 1, 2], [1, 2, 1]]
         winning_move = [2, 2]
         losing_move = [1, 0]
@@ -85,18 +85,3 @@ class Test_Connectz:
         assert subject.check_diagonal(winning_move, 'up', 'left') == 1
         assert subject.check_diagonal(losing_move, 'up', 'left') == -1
 
-    def test_draw(self):
-        subject = Connectz()
-        assert subject.run('draw.txt') == 0
-
-    def test_reads_file_ok(self):
-        subject = Connectz()
-        assert subject.run('test.txt') == 2
-
-    def test_file_error(self):
-        subject = Connectz()
-        assert subject.run('notreal.txt') == 9
-
-    def test_invalid_file(self):
-        subject = Connectz()
-        assert subject.run('invalid.txt') == 8
