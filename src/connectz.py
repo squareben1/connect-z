@@ -54,6 +54,8 @@ class Connectz:
         for i in range(number_of_moves):
             move = self.moves.pop(0)
             move_position = self.add_move(player, move)
+            if move_position == 5: 
+                return 5
             result = self.check_move(move_position)  # RECORD INDEX HERE?
             if result:
                 # check if moves are still in moves array
@@ -70,7 +72,7 @@ class Connectz:
         return 3
 
     def add_move(self, player, move):
-        if len(self.board[move-1]) > self.z:
+        if len(self.board[move-1]) >= self.y:
             return 5
         self.board[move-1].append(player)  # adds player to column
         # [column_number, row_number]
@@ -116,7 +118,6 @@ class Connectz:
             start_column = move_position[0]
             end_column = start_column + self.z - 1
             if end_column > self.x:
-                self.ill_row = True
                 return -1  # guard: if not enough rows to right HERE
         else:
             start_column = move_position[0] - self.z + 1
