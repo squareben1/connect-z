@@ -15,17 +15,6 @@ class Test_Connectz_Features:
 #  Error Tests
     def test_incomplete(self):
         assert subject.run('incomplete.txt') == 3
-    """
-The file conforms to the format and contains only legal moves, but
-the game is neither won nor drawn by either player and there are
-remaining available moves in the frame. Note that a file with only a
-dimensions line constitues an incomplete game.
-        3 3 3
-        1
-        2
-        3
-        1
-        """
 
     def test_invalid_file(self):
         assert subject.run('invalid.txt') == 8
