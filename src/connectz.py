@@ -17,7 +17,7 @@ class Connectz:
         self.board = [[] for i in range(self.x)]
         self.won = False
 
-        if self.z > self.x or self.z > self.y:
+        if self.z > self.x or self.z > self.y:  # if illegal game
             return 7
 
         return self.play_game()
@@ -34,6 +34,7 @@ class Connectz:
 
         file_string = ''.join(contents)
         pattern = re.compile(r'\d \d \d\n(?:\d\n)+\d\Z')
+
         match = pattern.match(file_string)
         if match == None:
             return 8
@@ -50,7 +51,7 @@ class Connectz:
         return string.split(' ')
 
     def play_game(self):
-        player = 1
+        player = 1  # track turn
         max_moves = self.x * self.y
         number_of_moves = len(self.moves)
 
@@ -59,25 +60,24 @@ class Connectz:
             move_position = self.add_move(player, move)
             if isinstance(move_position, int):
                 return move_position
-            result = self.check_move(move_position)  # RECORD INDEX HERE?
+            result = self.check_move(move_position)
             if result:
                 # check if moves are still in moves array
-                if len(self.moves) > 0: 
+                if len(self.moves) > 0:
                     return 4
                 self.won = True
                 return result
             elif max_moves == i + 1:  # if draw
                 return 0
             player = 2 if player == 1 else 1  # switch players after each move
-        
-        # if (len(self.moves) < max_moves) and self.won == False:
+
         # no more moves, game incomplete:
         return 3
 
     def add_move(self, player, move):
-        if move > self.x or move < 1: # if illegal column
+        if move > self.x or move < 1:  # if illegal column
             return 6
-        elif len(self.board[move-1]) >= self.y: # if illegal row
+        elif len(self.board[move-1]) >= self.y:  # if illegal row
             return 5
         self.board[move-1].append(player)  # adds player to column
         # [column_number, row_number]
@@ -94,20 +94,12 @@ class Connectz:
         game_codes.append(self.check_diagonal(move_position, 'up', 'right'))
         game_codes.append(self.check_diagonal(move_position, 'down', 'left'))
         game_codes.append(self.check_diagonal(move_position, 'down', 'right'))
-        # won_at = len(game_codes)
-        # print('won_at:' ,won_at)
-        # print('moves:', self.moves)
 
         win_result = list(filter(lambda a: a != -1, game_codes))
-        # ill_row = list(filter(lambda a: a != -2, game_codes))
 
         if win_result:
             self.won = True
-            print(win_result)
             return win_result[0]
-        # elif ill_row:
-        #     # self.won = True
-        #     return 5
 
     def check_column(self, move_position):
         if len(self.board[move_position[0]]) < self.z:
@@ -171,15 +163,6 @@ class Connectz:
         # result true if all element in z_moves are the same
         return self.check_elems(z_moves)
 
-# f = open(sys.argv[1], "r")
-# contents = f.readlines()  # strip newline
-# f.close()
-# print(contents)
 
-# new_game = Connectz(contents)
-# result_code = new_game.play_game()
-# print(result_code)
-
-
-# subject = Connectz()
-# print(subject.run(sys.argv[1]))
+subject = Connectz()
+print(subject.run(sys.argv[1]))
