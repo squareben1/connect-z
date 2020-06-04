@@ -22,6 +22,12 @@ class Test_Connectz_Features:
     def test_illegal_row(self):
         assert subject.run('illegalrow.txt') == 5
 
+    def test_illegal_column(self):
+        assert subject.run('illegalcolumn.txt') == 6
+
+    def test_illegal_game(self):
+        assert subject.run('illegalgame.txt') == 7
+
     def test_invalid_file(self):
         assert subject.run('invalid.txt') == 8
 

@@ -17,6 +17,9 @@ class Connectz:
         self.board = [[] for i in range(self.x)]
         self.won = False
 
+        if self.z > self.x or self.z > self.y:
+            return 7
+
         return self.play_game()
 
     def read_file(self, file_path):
@@ -54,8 +57,8 @@ class Connectz:
         for i in range(number_of_moves):
             move = self.moves.pop(0)
             move_position = self.add_move(player, move)
-            if move_position == 5: 
-                return 5
+            if isinstance(move_position, int):
+                return move_position
             result = self.check_move(move_position)  # RECORD INDEX HERE?
             if result:
                 # check if moves are still in moves array
@@ -72,7 +75,9 @@ class Connectz:
         return 3
 
     def add_move(self, player, move):
-        if len(self.board[move-1]) >= self.y:
+        if move > self.x or move < 1: # if illegal column
+            return 6
+        elif len(self.board[move-1]) >= self.y: # if illegal row
             return 5
         self.board[move-1].append(player)  # adds player to column
         # [column_number, row_number]
