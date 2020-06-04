@@ -23,12 +23,6 @@ class Test_Connectz:
     def test_intify(self):
         assert subject.intify(stripped_array[1:]) == [1, 2, 1]
 
-    def test_easy_inputs(self):
-        assert subject.x == 3
-        assert subject.y == 3
-        assert subject.z == 2
-        assert subject.moves == [1, 2, 1]
-
     def test_add_move(self):
         subject.board = [[], [], []]
         assert subject.add_move(1, 1) == [0, 0]

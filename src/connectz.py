@@ -37,20 +37,6 @@ class Connectz:
 
         return contents
 
-    """
-    In this solution columns  are represented by arrays, rows by positions in them.
-    Below game params = X = 3, Y = 3, Z = 2, moves = [1, 2, 1]
-    [
-      [1,1,_], ─ Column 1
-      [2,_,_], ─ Column 2
-      [_,_,_]  ─ Column 3
-    ]  | | |
-       | | └ ─ Row 3
-       | └ ─ Row 2
-       └ ─	Row 1
-    Player 1 wins
-    """
-
     def strip(self, arr):  # strip new lines
         return [s.rstrip("\n") for s in arr]
 
@@ -63,25 +49,29 @@ class Connectz:
     def play_game(self):
         player = 1
         max_moves = self.x * self.y
+        number_of_moves = len(self.moves)
 
-        
-
-        for i in self.moves:
-            move_position = self.add_move(player, i)
-            result = self.check_move(move_position)
+        for i in range(number_of_moves):
+            move = self.moves.pop(0)
+            move_position = self.add_move(player, move)
+            result = self.check_move(move_position)  # RECORD INDEX HERE?
             if result:
+                # check if moves are still in moves array
+                if len(self.moves) > 0: 
+                    return 4
                 self.won = True
                 return result
-            elif max_moves == len(self.moves): # if draw
+            elif max_moves == i + 1:  # if draw
                 return 0
-                # below: trying to do incomplete error:
             player = 2 if player == 1 else 1  # switch players after each move
-        # if incomplete: 
-        if (len(self.moves) < max_moves) and self.won == False:
-                print(result)
-                return 3
+        
+        # if (len(self.moves) < max_moves) and self.won == False:
+        # no more moves, game incomplete:
+        return 3
 
     def add_move(self, player, move):
+        if len(self.board[move-1]) > self.z:
+            return 5
         self.board[move-1].append(player)  # adds player to column
         # [column_number, row_number]
         return [move-1, len(self.board[move-1])-1]
@@ -97,11 +87,20 @@ class Connectz:
         game_codes.append(self.check_diagonal(move_position, 'up', 'right'))
         game_codes.append(self.check_diagonal(move_position, 'down', 'left'))
         game_codes.append(self.check_diagonal(move_position, 'down', 'right'))
-        result = list(filter(lambda a: a != -1, game_codes))
-        if result:
+        # won_at = len(game_codes)
+        # print('won_at:' ,won_at)
+        # print('moves:', self.moves)
+
+        win_result = list(filter(lambda a: a != -1, game_codes))
+        # ill_row = list(filter(lambda a: a != -2, game_codes))
+
+        if win_result:
             self.won = True
-            print(result[0], self.won)
-            return result[0]
+            print(win_result)
+            return win_result[0]
+        # elif ill_row:
+        #     # self.won = True
+        #     return 5
 
     def check_column(self, move_position):
         if len(self.board[move_position[0]]) < self.z:
@@ -117,7 +116,8 @@ class Connectz:
             start_column = move_position[0]
             end_column = start_column + self.z - 1
             if end_column > self.x:
-                return -1  # guard: if not enough rows to right
+                self.ill_row = True
+                return -1  # guard: if not enough rows to right HERE
         else:
             start_column = move_position[0] - self.z + 1
             end_column = move_position[0]

@@ -16,6 +16,16 @@ class Test_Connectz_Features:
     def test_incomplete(self):
         assert subject.run('incomplete.txt') == 3
 
+    def test_illegal_continue(self):
+        assert subject.run('illegalcontinue.txt') == 4
+    """
+All moves are valid in all other respects but the game has already
+been won on a previous turn so continued play is considered an
+illegal move
+    """
+    # def test_illegal_row(self):
+    #     assert subject.run('illegalrow.txt') == 5
+
     def test_invalid_file(self):
         assert subject.run('invalid.txt') == 8
 
