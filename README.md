@@ -6,7 +6,7 @@ Program is contained in connectz.py as stipulated. I used TDD to develop this so
 
 To run program:
 
-    python3 src/connectz.py filename.txt
+    python3 src/app.py <filename>.txt
 
 If you want to run my tests; comment out lines 168-169 of connectz.py before running ```python3 -m pytest```: 
 

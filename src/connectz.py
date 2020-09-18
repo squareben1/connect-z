@@ -62,7 +62,7 @@ class Connectz:
                 return move_position
             result = self.check_move(move_position)
             if result:
-                if len(self.moves) > 0: # check if there are still moves in moves array after game won
+                if len(self.moves) > 0:  # check if there are still moves in moves array after game won
                     return 4
                 self.won = True
                 return result
@@ -83,7 +83,7 @@ class Connectz:
         return [move-1, len(self.board[move-1])-1]
 
     def check_move(self, move_position):
-        # Check the different varitations of win, -1 pushed to game_codes unless win, 1 pushed if win 
+        # Check the different varitations of win, -1 pushed to game_codes unless win, 1 pushed if win
         game_codes = []
         game_codes.append(self.check_column(move_position))
         game_codes.append(self.check_row(move_position, 'right'))
@@ -160,7 +160,3 @@ class Connectz:
 
         # result true if all element in z_moves are the same
         return self.check_elems(z_moves)
-
-
-# subject = Connectz()
-# print(subject.run(sys.argv[1]))
