@@ -30,12 +30,12 @@ class Connectz:
             string_array[0]))  # array of ints
         self.x = arr[0]
         self.y = arr[1]
-        self.z = arr[2]
+        self.line_length = arr[2]
         self.moves = self.formatter.intify(string_array[1:])
         self.board = [[] for i in range(self.x)]
         self.won = False
 
-        if self.z > self.x or self.z > self.y:  # if illegal game
+        if self.line_length > self.x or self.line_length > self.y:  # if illegal game
             return 7
 
         return self.play_game()
@@ -58,9 +58,6 @@ class Connectz:
             return 8
 
         return contents
-
-    def strip(self, arr):  # strip new lines
-        return [s.rstrip("\n") for s in arr]
 
     def play_game(self):
         player = 1  # track turn
@@ -112,9 +109,10 @@ class Connectz:
             return win_result[0]
 
     def check_column(self, move_position):
-        if len(self.board[move_position[0]]) < self.z:
+        if len(self.board[move_position[0]]) < self.line_length:
             return -1  # guard: if win is impossible bc column is < Z
-        column = self.board[move_position[0]][-self.z:]  # get Z elems in col
+        column = self.board[move_position[0]
+                            ][-self.line_length:]  # get Z elems in col
         result = all(elem == column[0] for elem in column)  # check all same
         return column[0] if result else -1
 
@@ -123,11 +121,11 @@ class Connectz:
         row_height = move_position[1]
         if direction == 'right':
             start_column = move_position[0]
-            end_column = start_column + self.z - 1
+            end_column = start_column + self.line_length - 1
             if end_column > self.x:
                 return -1  # guard: if not enough rows to right HERE
         else:
-            start_column = move_position[0] - self.z + 1
+            start_column = move_position[0] - self.line_length + 1
             end_column = move_position[0]
             if start_column < 0:
                 return -1  # guard: if not enough rows to left
@@ -155,14 +153,14 @@ class Connectz:
 
         # get columns and check horizontal range
         if horizontal == 'right':
-            if (move_position[0] + self.z) > self.x:
+            if (move_position[0] + self.line_length) > self.x:
                 return -1  # guard: if not enough rows to right
         else:
-            if (move_position[0] - self.z + 1) < 0:
+            if (move_position[0] - self.line_length + 1) < 0:
                 return -1  # guard: if not enough rows to left
 
         # iterate diagonally to get values to check
-        for i in range(self.z):
+        for i in range(self.line_length):
             column_loc = starting_column + (i * horiztonal_iterator)
             row_loc = row_height + (i * vertical_iterator)
             if len(self.board[column_loc]) < (row_loc + 1) or row_loc < 0:
