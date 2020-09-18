@@ -13,8 +13,8 @@ class Test_Format:
     def test_arrayify_ones(self):
         assert subject.arrayify('1 1') == ['1', '1']
 
-    # def test_arrayify_twos(self):
-    #     assert subject.arrayify('2 2 2') == ['2', '2', '2']
+    def test_arrayify_twos(self):
+        assert subject.arrayify('2 2 2') == ['2', '2', '2']
 
     # def test_intify(self):
     #     assert subject.intify(stripped_array[1:]) == [1, 2, 1]

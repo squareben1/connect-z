@@ -23,7 +23,8 @@ class Connectz:
 
         string_array = self.formatter.strip_new_lines(
             result)  # strip new lines
-        arr = self.intify(self.arrayify(string_array[0]))  # array of ints
+        arr = self.intify(self.formatter.arrayify(
+            string_array[0]))  # array of ints
         self.x = arr[0]
         self.y = arr[1]
         self.z = arr[2]
@@ -60,9 +61,6 @@ class Connectz:
 
     def intify(self, array):
         return [int(i) for i in array]
-
-    def arrayify(self, string):
-        return string.split(' ')
 
     def play_game(self):
         player = 1  # track turn
