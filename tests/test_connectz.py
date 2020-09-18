@@ -11,8 +11,8 @@ subject.run('tests/easy_test.txt')
 
 
 class Test_Connectz:
-    def test_intify(self):
-        assert subject.intify(stripped_array[1:]) == [1, 2, 1]
+    # def test_intify(self):
+    #     assert subject.intify(stripped_array[1:]) == [1, 2, 1]
 
     def test_add_move(self):
         subject.board = [[], [], []]

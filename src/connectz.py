@@ -9,6 +9,9 @@ class InputFormatter:
     def arrayify(self, string):
         return string.split(' ')
 
+    def intify(self, array):
+        return [int(i) for i in array]
+
 
 class Connectz:
 
@@ -23,12 +26,12 @@ class Connectz:
 
         string_array = self.formatter.strip_new_lines(
             result)  # strip new lines
-        arr = self.intify(self.formatter.arrayify(
+        arr = self.formatter.intify(self.formatter.arrayify(
             string_array[0]))  # array of ints
         self.x = arr[0]
         self.y = arr[1]
         self.z = arr[2]
-        self.moves = self.intify(string_array[1:])
+        self.moves = self.formatter.intify(string_array[1:])
         self.board = [[] for i in range(self.x)]
         self.won = False
 
@@ -58,9 +61,6 @@ class Connectz:
 
     def strip(self, arr):  # strip new lines
         return [s.rstrip("\n") for s in arr]
-
-    def intify(self, array):
-        return [int(i) for i in array]
 
     def play_game(self):
         player = 1  # track turn
