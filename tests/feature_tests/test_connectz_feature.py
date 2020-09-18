@@ -1,6 +1,7 @@
-from src.connectz import *
+from src.connectz import Connectz
 
 subject = Connectz()
+
 
 class Test_Connectz_Features:
     def test_draw(self):
@@ -33,4 +34,3 @@ class Test_Connectz_Features:
 
     def test_file_error(self):
         assert subject.run('notreal.txt') == 9
-
