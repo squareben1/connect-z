@@ -2,7 +2,7 @@
 
 Solution by Ben Gittins.
 
-Program is contained in connectz.py as stipulated. I used TDD to develop this solution so the project also contains my tests and text files containing acceptance tests.
+Original program contained in connectz.py as stipulated in the challenge. I used TDD to develop this solution so the project also contains my tests and text files containing acceptance tests.
 
 To run program:
 
@@ -11,6 +11,24 @@ To run program:
 To run tests:
 
     python3 python3 -m pytest 
+
+### The Problem
+
+
+This programming challenge is based on the classic game of Connect Four.
+
+Your goal is to implement a game checker program for Connect Z. In Connect Z the concept of the traditional game of Connect Four is generalized to include playing frames of any size and a target line of any length. When provided with a data file that describes a game of Connect Z your checker program should determine if that game was won, drawn or contains an error of some kind. The format of the data files and expected output is described in detail below.
+
+### Program specification
+
+- This challenge should be written in Python 3. The reference implementation that will be used to assess the submission is Python 3.6.
+- Third party libraries are not allowed. The challenge should be completed using only features provided by the standard libraries. https://docs.python.org/3/library/index.html
+- The game checker should be submitted as a Python script called ‘connectz.py’.
+- The script will read input from a datafile which is a pain ASCII textfile.
+- This script takes a single argument ‘inputfilename’ which is the name of the data file containing game information to be checked.
+- The script will be called as: ```python connectz.py inputfilename```
+- If the game is run with no arguments or more than one argument it should print the following message as a single line to standard out:
+  ```connectz.py: Provide one input file```
 
 ### About Solution 
 
