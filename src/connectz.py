@@ -2,15 +2,27 @@ import sys
 import re
 
 
+class InputFormatter:
+    def strip_new_lines(self, arr):
+        return [s.rstrip("\n") for s in arr]
+
+    def arrayify(self, string):
+        return string.split(' ')
+
+
 class Connectz:
+
     def run(self, file_path=''):
+        self.formatter = InputFormatter()
+
         if file_path == '':
             return 'connectz.py: Provide one input file'
         result = self.read_file(file_path)
         if result == 9 or result == 8:
             return result
 
-        string_array = self.strip(result)  # strip new lines
+        string_array = self.formatter.strip_new_lines(
+            result)  # strip new lines
         arr = self.intify(self.arrayify(string_array[0]))  # array of ints
         self.x = arr[0]
         self.y = arr[1]
