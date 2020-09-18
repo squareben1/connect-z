@@ -1,7 +1,7 @@
 from src.connectz import *
 import os
 
-easy_arr = ['3 3 2\n', '1\n', '2\n', '1\n']
+
 stripped_array = ['3 3 2', '1', '2', '1']
 
 ones_first_col = ['7 6 4\n', '1\n', '2\n', '1\n', '2\n', '1\n', '2\n', '1\n']
@@ -11,9 +11,6 @@ subject.run('tests/easy_test.txt')
 
 
 class Test_Connectz:
-    def test_strip_new_lines(self):
-        assert subject.strip(easy_arr) == stripped_array
-
     def test_arrayify_ones(self):
         assert subject.arrayify('1 1') == ['1', '1']
 
@@ -33,7 +30,6 @@ class Test_Connectz:
         assert subject.check_column([1, 0]) == -1
 
     def test_check_row_right(self):
-        # moves = [3, 1, 2]
         subject.board = [[2], [1], [1]]
         winning_move = [1, 0]
         losing_move = [0, 0]

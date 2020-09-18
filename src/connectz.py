@@ -162,5 +162,5 @@ class Connectz:
         return self.check_elems(z_moves)
 
 
-subject = Connectz()
-print(subject.run(sys.argv[1]))
+# subject = Connectz()
+# print(subject.run(sys.argv[1]))
