@@ -3,7 +3,9 @@ import re
 
 
 class Connectz:
-    def run(self, file_path):
+    def run(self, file_path=''):
+        if file_path == '':
+            return 'connectz.py: Provide one input file'
         result = self.read_file(file_path)
         if result == 9 or result == 8:
             return result

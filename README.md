@@ -1,5 +1,7 @@
 # connect-z
 
+## Intro
+
 Solution by Ben Gittins.
 
 Original program contained in connectz.py as stipulated in the challenge. I used TDD to develop this solution so the project also contains my tests and text files containing acceptance tests.
@@ -12,12 +14,11 @@ To run tests:
 
     python3 python3 -m pytest 
 
-### The Problem
-
+## Part 1: The Problem
 
 This programming challenge is based on the classic game of Connect Four.
 
-Your goal is to implement a game checker program for Connect Z. In Connect Z the concept of the traditional game of Connect Four is generalized to include playing frames of any size and a target line of any length. When provided with a data file that describes a game of Connect Z your checker program should determine if that game was won, drawn or contains an error of some kind. The format of the data files and expected output is described in detail below.
+"Your goal is to implement a game checker program for Connect Z. In Connect Z the concept of the traditional game of Connect Four is generalized to include playing frames of any size and a target line of any length. When provided with a data file that describes a game of Connect Z your checker program should determine if that game was won, drawn or contains an error of some kind. The format of the data files and expected output is described in detail below."
 
 ### Program specification
 
@@ -30,7 +31,9 @@ Your goal is to implement a game checker program for Connect Z. In Connect Z the
 - If the game is run with no arguments or more than one argument it should print the following message as a single line to standard out:
   ```connectz.py: Provide one input file```
 
-### About Solution 
+## Part 2: The Solution
+
+### About Solution
 
 In this solution columns  are represented by arrays, rows by positions in those arrays.
 
@@ -61,11 +64,11 @@ If not constrained to one file I would also have split out several classes to ad
 
 ### Summary
 
-I found this task difficult! I certainly didn't breeze through it - I spent several days working on it and had a couple of false starts and frustrating moments.
+I found this problem difficult! I certainly didn't breeze through it - I spent several days working on it and had a couple of false starts and frustrating moments.
 
 However I am pleased with the end result and actually got an awful lot out of it as an exercise. My solution made it easier to code but harder to visualise naturally since arrays represent columns and rows are represented by indexes in those arrays - essentially flipping the 'board' on it's side. This trade-off between ease of coding and ease of visualising contributed to the challenge for me as I sometimes struggled for context.
 
 Overall this was a very challenging but ultimately satisfying problem that I learned a lot from.
 
 
-**Small note on commenting:** I usually try to avoid leaving comments in my code (Ruby was my first language so I learned to avoid it early on). I actually really like how doing it here has signposted the code though.
+**Small note on commenting:** I usually try to avoid leaving comments in my code (Ruby was my first language so I learned to avoid it early on). I prefer to aim for well-named functions with as few lines of code as possible. I actually really like how doing it here has signposted the code though.

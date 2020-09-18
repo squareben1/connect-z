@@ -34,3 +34,6 @@ class Test_Connectz_Features:
 
     def test_file_error(self):
         assert subject.run('notreal.txt') == 9
+
+    def test_no_arg_error(self):
+        assert subject.run() == 'connectz.py: Provide one input file'
